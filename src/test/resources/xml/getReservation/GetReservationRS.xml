@@ -1,0 +1,34 @@
+<GetReservationRS xmlns="http://webservices.sabre.com/pnrbuilder/v1_19" xmlns:ns2="http://services.sabre.com/res/or/v1_14" xmlns:ns3="http://www.sabre.com/ns/Ticketing/TTL/1.0" xmlns:ns4="http://www.sabre.com/ns/Ticketing/pqs/1.0" Version="1.19.0">
+    <Reservation numberInParty="1" numberOfInfants="0" NumberInSegment="1" isMultiCarrierPlatform="true">
+        <BookingDetails>
+            <RecordLocator>DBWJEP</RecordLocator>
+            <CreationTimestamp>2019-05-29T16:41:00</CreationTimestamp>
+            <SystemCreationTimestamp>2019-05-29T16:41:00</SystemCreationTimestamp>
+            <CreationAgentID>SH1</CreationAgentID>
+            <UpdateTimestamp>2019-05-29T16:41:20</UpdateTimestamp>
+            <PNRSequence>1</PNRSequence>
+            <DivideSplitDetails />
+            <EstimatedPurgeTimestamp>2019-06-28T00:00:00</EstimatedPurgeTimestamp>
+            <UpdateToken>-4bead863642f4b8affd4a077e7f6736f4e951fb55fd5df41</UpdateToken>
+        </BookingDetails>
+        <POS AirExtras="false" InhibitCode="U">
+            <Source BookingSource="A0A0" AgentSine="SH1" PseudoCityCode="BVN" ISOCountry="AR" AgentDutyCode="5" AirlineVendorID="LA" HomePseudoCityCode="BVN" PrimeHostID="LA">
+                <OAC>
+                    <PartitionId>LP</PartitionId>
+                    <AccountingCityCode>BVN</AccountingCityCode>
+                    <AccountingCode>PW</AccountingCode>
+                    <AccountingOfficeStationCode>5599539</AccountingOfficeStationCode>
+                </OAC>
+            </Source>
+        </POS>
+        <PassengerReservation>
+            <Passengers />
+            <Segments />
+            <TicketingInfo />
+            <ItineraryPricing />
+        </PassengerReservation>
+        <ReceivedFrom />
+        <EmailAddresses />
+    </Reservation>
+</GetReservationRS>
+

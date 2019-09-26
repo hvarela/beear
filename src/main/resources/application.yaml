@@ -1,0 +1,14 @@
+management:
+  endpoints:
+    web:
+      base-path: /
+      path-mapping:
+        health: esp-healthz
+  health:
+    db:
+      enabled: false
+
+
+# Values separated by comma (,) ex: /health, /esp-healthz
+trackingDataFilter:
+  toExcludePath: /esp-healthz

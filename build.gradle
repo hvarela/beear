@@ -1,0 +1,73 @@
+
+buildscript {
+    ext {
+        springBootVersion = '2.0.0.RELEASE'
+        gradlePitestPluginVersion = '1.1.11'
+        sonarQubeVersion = '2.6.2'
+        buildInfoExtractorVersion = '4.5.4'
+        gradleVersions = '0.15.0'
+    }
+    repositories {
+        mavenCentral()
+        //Needed only for SNAPSHOT versions
+        //maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("info.solidsoft.gradle.pitest:gradle-pitest-plugin:${gradlePitestPluginVersion}")
+        classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${sonarQubeVersion}")
+    }
+}
+
+
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply from: 'gradle/version.gradle'
+apply from: 'gradle/sources.gradle'
+apply from: 'gradle/dependencies.gradle'
+apply from: 'gradle/tests.gradle'
+apply from: 'gradle/sonar.gradle'
+apply from: 'gradle/tasks.gradle'
+
+group = 'com.falabella.api'
+version = "1.0.0-SNAPSHOT"
+
+// This ensure only one main method will use on SpringBoot start.
+apply plugin: 'application'
+mainClassName = 'com.falabella.api.Application'
+
+repositories {
+    mavenCentral()
+}
+
+run {
+    jvmArgs = ["-server",
+               "-Dspring.profiles.active=dev"]
+}
+
+
+compileJava {
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+
+allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+}
+
+tasks.withType(JavaCompile){
+    options.warnings = true
+}
+
+
+configurations {
+    customProvidedRuntime
+}

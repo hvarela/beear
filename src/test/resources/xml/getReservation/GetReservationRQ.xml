@@ -1,0 +1,8 @@
+<GetReservationRQ xmlns="http://webservices.sabre.com/pnrbuilder/v1_19" xmlns:ns2="http://services.sabre.com/res/or/v1_14" Version="1.19.0">
+    <Locator>DBWJEP</Locator>
+    <RequestType>Stateful</RequestType>
+    <ReturnOptions>
+        <ViewName>Simple</ViewName>
+        <ResponseFormat>STL</ResponseFormat>
+    </ReturnOptions>
+</GetReservationRQ>

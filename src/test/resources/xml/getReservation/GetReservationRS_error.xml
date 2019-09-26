@@ -1,0 +1,10 @@
+<stl19:GetReservationRS xmlns:stl19="http://webservices.sabre.com/pnrbuilder/v1_19" xmlns:ns6="http://services.sabre.com/res/orr/v0" xmlns:raw="http://tds.sabre.com/itinerary" xmlns:ns4="http://webservices.sabre.com/pnrconn/ReaccSearch" xmlns:or112="http://services.sabre.com/res/or/v1_12" Version="1.19.0">
+<stl19:Errors>
+    <stl19:Error>
+        <stl19:Code>500325</stl19:Code>
+        <stl19:Message>PNR not found</stl19:Message>
+        <stl19:Severity>MODERATE</stl19:Severity>
+    </stl19:Error>
+</stl19:Errors>
+</stl19:GetReservationRS>
+
