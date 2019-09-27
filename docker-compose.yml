@@ -13,9 +13,7 @@ services:
       - '3306:3306'
       # Where our data will be persisted
     volumes:
-      - my-db:/var/lib/mysql
-    networks:
-      - backend 
+      - my-db:/var/lib/mysql 
   apiBeer:
     image: com.falabella.api/beers:1.0.0-SNAPSHOT
     depends_on:
@@ -29,13 +27,8 @@ services:
       DATABASE_NAME: db  
       DATABASE_PORT: 3306
       SPRING_PROFILE: dev
-    networks:
-      - backend 
+   
 # Names our volume
 volumes:
   my-db:
 
-# Networks to be created to facilitate communication between containers
-networks:
-  backend:
-  frontend:
