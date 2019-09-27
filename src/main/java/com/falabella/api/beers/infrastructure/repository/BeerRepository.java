@@ -1,8 +1,6 @@
 package com.falabella.api.beers.infrastructure.repository;
 
 import com.falabella.api.beers.domain.entities.beers.BeerItem;
-import com.falabella.api.beers.domain.entities.error.BeerNotFoundException;
-import com.falabella.api.beers.domain.entities.error.DuplicateBeerItemException;
 import com.falabella.api.beers.domain.usecases.ports.BeerDataProvider;
 import com.falabella.api.beers.infrastructure.entities.BeersEntity;
 import com.falabella.api.beers.infrastructure.repository.translate.ModelConverter;
@@ -29,13 +27,9 @@ public class BeerRepository implements BeerDataProvider {
     @Override
     public BeerItem addBeer(BeerItem beer) {
 
-        Optional<BeersEntity> beersEntityFound = beerCrud.findById( beer.getId());
-
-        if( beersEntityFound.isPresent() ) throw new DuplicateBeerItemException();
-
         BeersEntity beersEntity =  beerCrud.save(  modelConverter.convert(beer));
 
-        return beer;
+        return modelConverter.convert( beersEntity);
     }
 
     @Override
@@ -54,12 +48,16 @@ public class BeerRepository implements BeerDataProvider {
     }
 
     @Override
-    public BeerItem getBeer(int id) {
+    public Optional<BeerItem> getBeer(int id) {
+        Optional<BeerItem> beerItem = Optional.empty();
+
         Optional<BeersEntity> beersEntityFound = beerCrud.findById(id);
 
-        if( !beersEntityFound.isPresent() ) throw new BeerNotFoundException();
+        if( beersEntityFound.isPresent() ){
+            beerItem =  Optional.of(modelConverter.convert(beersEntityFound.get()));
+        }
 
-        return  modelConverter.convert(  beersEntityFound.get());
+        return beerItem;
 
     }
 }

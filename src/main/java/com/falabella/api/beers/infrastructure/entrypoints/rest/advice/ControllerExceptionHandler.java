@@ -36,10 +36,18 @@ public class ControllerExceptionHandler{
         return new ApiError(HttpStatus.NOT_FOUND.value(), e.getErrorType().getDescription());
     }
 
-    @ExceptionHandler(RuntimeException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ApiError handleRunTime(RuntimeException e) {
+    @ExceptionHandler(ApiCurrencyException.class)
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+    public ApiError handleDuplicateBeer(ApiCurrencyException e) {
         loggerError(e);
+        return new ApiError(HttpStatus.NOT_ACCEPTABLE.value(), e.getErrorType().getDescription());
+    }
+
+
+    @ExceptionHandler(InternalErrorException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ApiError handleRunTime(InternalErrorException e) {
+        loggerError(e.getMessage());
         return new ApiError(HttpStatus.INTERNAL_SERVER_ERROR.value(), ErrorType.UNEXPECTED_ERROR.getDescription());
     }
 
@@ -47,7 +55,7 @@ public class ControllerExceptionHandler{
         logger.error( String.format(" Error code [%s]   msg [%s] ",  e.getErrorType().getCode(), e.getMessage()));
     }
 
-    private void loggerError(RuntimeException e){
-        logger.error( String.format("Unexpected Error.  msg [%s] ",  e.getMessage()));
+    private void loggerError(String msg){
+        logger.error( String.format("Unexpected Error.  msg [%s] ", msg));
     }
 }

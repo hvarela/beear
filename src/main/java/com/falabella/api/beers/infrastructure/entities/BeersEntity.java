@@ -1,8 +1,16 @@
 package com.falabella.api.beers.infrastructure.entities;
 
-import javax.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity( name="Beers")
+@Getter
+@Setter
 public class BeersEntity {
     @Id
     @Basic(optional = false)
@@ -26,54 +34,6 @@ public class BeersEntity {
         this.brewery = brewery;
         this.country = country;
         this.currency = currency;
-        this.price = price;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getBrewery() {
-        return brewery;
-    }
-
-    public void setBrewery(String brewery) {
-        this.brewery = brewery;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public String getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
-
-    public Float getPrice() {
-        return price;
-    }
-
-    public void setPrice(Float price) {
         this.price = price;
     }
 }

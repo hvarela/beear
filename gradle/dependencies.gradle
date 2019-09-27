@@ -2,6 +2,7 @@ ext {
     commonsLang3Ver = '3.6'
     junitVer = '4.12'
     mockitoCoreVer = '2.10.0'
+    springBootVer = '2.0.0.RELEASE'
     modelMapper = '2.0.0.RELEASE'
     springVer = '5.1.2.RELEASE'
     modelMapper = '2.3.0'
@@ -35,5 +36,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'mysql:mysql-connector-java'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    compileOnly 'org.projectlombok:lombok'
    
 }
