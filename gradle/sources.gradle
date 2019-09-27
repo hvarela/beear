@@ -1,0 +1,13 @@
+sourceSets {
+    test {
+        java {
+            srcDir 'src/test/java'
+        }
+        resources {
+            srcDir 'src/test/resources'
+        }
+        compileClasspath += sourceSets.main.runtimeClasspath
+        compileClasspath += sourceSets.test.compileClasspath
+        runtimeClasspath = output + compileClasspath
+    }
+}

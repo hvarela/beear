@@ -1,14 +1,11 @@
-management:
-  endpoints:
-    web:
-      base-path: /
-      path-mapping:
-        health: esp-healthz
-  health:
-    db:
-      enabled: false
 
 
-# Values separated by comma (,) ex: /health, /esp-healthz
-trackingDataFilter:
-  toExcludePath: /esp-healthz
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db
+    username: hvarela
+    password : beer

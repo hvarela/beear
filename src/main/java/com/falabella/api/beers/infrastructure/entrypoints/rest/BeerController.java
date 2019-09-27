@@ -2,14 +2,15 @@ package com.falabella.api.beers.infrastructure.entrypoints.rest;
 
 import com.falabella.api.beers.domain.entities.beers.BeerItem;
 import com.falabella.api.beers.domain.usecases.BeerOperations;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Collection;
 
 
 @RestController
-@RequestMapping("/beers/")
+@RequestMapping("/beers")
 public class BeerController {
 
     private final BeerOperations beerOperations;
@@ -18,19 +19,42 @@ public class BeerController {
         this.beerOperations = beerOperations;
     }
 
-    @GetMapping()
-    public String searchBeers() {
+    @RequestMapping(
+            value = "",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    @ResponseBody
+    public Collection<BeerItem> searchBeers() {
 
-        beerOperations.getAllBeer();
-
-        return String.format("Echo [%s]",  "exito");
+        return beerOperations.getAllBeer();
     }
 
-    @PostMapping()
-    public String addBeers( ) {
+    @RequestMapping(
+            value = "/{id}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    @ResponseBody
+    public BeerItem searchBeers(@PathVariable int id) {
 
-        beerOperations.addBeer( new BeerItem(1,"tito","casa de beeer","CL",10, "CLP"));
+        return beerOperations.getBeerbyId( id);
+    }
 
-        return String.format("add  ok [%s]",  "exito");
+    @RequestMapping(
+            value = "",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE
+    )
+    @ResponseBody
+    @ResponseStatus(HttpStatus.CREATED)
+    public BeerItem addBeers(@RequestBody BeerItem beerItem) {
+
+        beerItem.validate();
+
+
+
+        return beerOperations.addBeer(beerItem);
     }
 }

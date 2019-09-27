@@ -5,21 +5,19 @@ import java.util.StringJoiner;
 
 public class ApiError {
 
-    private String status;
+    private int status;
     private String message;
-    private String error;
 
     public ApiError() {
         // Default constructor
     }
 
-    public ApiError(String httpStatus, String message, String error) {
+    public ApiError(int httpStatus, String message) {
         this.status = httpStatus;
         this.message = message;
-        this.error =  error;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return status;
     }
 
@@ -31,9 +29,6 @@ public class ApiError {
         this.message = message;
     }
 
-    public String getError() {
-        return error;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -47,20 +42,11 @@ public class ApiError {
 
         ApiError apiError = (ApiError) o;
 
-        return  this.error == apiError.error &&
-                this.message == apiError.message &&
+        return  this.message == apiError.message &&
                 this.status == apiError.status;
 
     }
 
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", "ApiError" + "[", "]")
-                .add("status=" + status)
-                .add("message='" + message + "'")
-                .add("errors=" + error)
-                .toString();
-    }
 
     @Override
     public int hashCode() {

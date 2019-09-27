@@ -1,0 +1,21 @@
+task unitTest(type: Test) {
+    description = "Runs Unit Tests"
+    include "**/com/**"
+}
+
+task archTest(type: Test) {
+    description = "Runs Arch Tests"
+    include "**/architecture/**"
+}
+
+task functionalTest(type: Test) {
+    description = "Runs Unit Tests"
+    include "**/functional/**"
+}
+
+task allTests {
+    description = "Runs All Tests"
+
+    dependsOn unitTest
+    dependsOn archTest
+}

@@ -1,26 +1,32 @@
-package com.falabella.api.beers.domain.entities.beers;
+package com.falabella.api.beers.infrastructure.entities;
 
-import com.falabella.api.beers.domain.entities.error.BeerItemException;
-import com.falabella.api.beers.domain.entities.error.ErrorType;
-import org.springframework.util.StringUtils;
+import javax.persistence.*;
 
-public class BeerItem{
+@Entity( name="Beers")
+public class BeersEntity {
+    @Id
+    @Basic(optional = false)
     private Integer id;
+    @Column
     private String name;
+    @Column
     private String brewery;
+    @Column
     private String country;
+    @Column
     private String currency;
+    @Column
     private Float price;
 
-    public  BeerItem(){};
+    public  BeersEntity(){};
 
-    public BeerItem(Integer id, String name, String brewery, String country, String currency, Float price) {
+    public BeersEntity(Integer id, String name, String brewery, String country, String currency, Float price) {
         this.id = id;
         this.name = name;
         this.brewery = brewery;
         this.country = country;
-        this.price = price;
         this.currency = currency;
+        this.price = price;
     }
 
     public Integer getId() {
@@ -69,13 +75,5 @@ public class BeerItem{
 
     public void setPrice(Float price) {
         this.price = price;
-    }
-
-    public void validate(){
-
-        if( this.id == null  ||  StringUtils.isEmpty(this.name) || StringUtils.isEmpty(this.brewery) || StringUtils.isEmpty(this.country) ||
-                StringUtils.isEmpty(this.currency)  ){
-            throw  new BeerItemException();
-        }
     }
 }

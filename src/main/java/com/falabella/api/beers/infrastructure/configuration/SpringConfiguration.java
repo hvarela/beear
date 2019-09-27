@@ -1,7 +1,7 @@
 package com.falabella.api.beers.infrastructure.configuration;
 
 import com.falabella.api.beers.domain.usecases.BeerOperations;
-import com.falabella.api.beers.infrastructure.entrypoints.rest.repository.BeerRepository;
+import com.falabella.api.beers.infrastructure.repository.BeerRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

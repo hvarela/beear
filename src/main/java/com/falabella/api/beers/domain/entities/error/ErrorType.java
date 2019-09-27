@@ -3,7 +3,9 @@ package com.falabella.api.beers.domain.entities.error;
 public enum ErrorType {
 
     UNEXPECTED_ERROR("TKT0001", "Unexpected error"),
-    BEER_INVALID_PARAMETE("TKT0002", "Invalid Parameter ");
+    BEER_INVALID_PARAMETE("TKT0002", "Request invalida"),
+    BEERID_DUPLICATE("TKT0003", "El ID de la cerveza ya existe"),
+    BEERID_NOT_FOUND("TKT0004", "El Id de la cerveza no existe");
 
     private final String code;
     private final String description;

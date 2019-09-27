@@ -6,6 +6,7 @@ import java.util.Collection;
 
 
 public interface BeerDataProvider {
-    void addBeer(BeerItem beer);
+    BeerItem addBeer(BeerItem beer);
     Collection<BeerItem> getAllBeers();
+    BeerItem getBeer( int id);
 }
