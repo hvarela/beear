@@ -8,7 +8,7 @@ EXPOSE 8080
 ENV LANG C.UTF-8
 
 # Default copy (Gradle)
-COPY ./build/libs/*.jar /api/app.jar
+COPY *.jar /api/app.jar
 
 # Default workspace dir
 RUN ls /api
@@ -17,9 +17,5 @@ WORKDIR /api
 # no root execution
 USER www-data
 
-ENTRYPOINT [ \
-    "java", \
-    "-server", \
-    "-jar", \
-    "/api/app.jar" \
-]
+ENTRYPOINT exec java -Dspring.profiles.active=${SPRING_PROFILE} -Xms64m -Xmx256m -jar app.jar
+

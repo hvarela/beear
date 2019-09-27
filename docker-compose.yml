@@ -1,22 +1,41 @@
 version: '3.3'
 services:
-  db:
+  docker-mysql:
     image: mysql:5.7
     restart: always
     environment:
       MYSQL_DATABASE: 'db'
       MYSQL_USER: 'hvarela'
       MYSQL_PASSWORD: 'beer'
-      MYSQL_ROOT_PASSWORD: 'pass'
+      MYSQL_ROOT_PASSWORD: 'root'
     ports:
       # <Port exposed> : < MySQL Port running inside container>
       - '3306:3306'
-    expose:
-      # Opens port 3306 on the container
-      - '3306'
       # Where our data will be persisted
     volumes:
       - my-db:/var/lib/mysql
+    networks:
+      - backend 
+  apiBeer:
+    image: com.falabella.api/beers:1.0.0-SNAPSHOT
+    depends_on:
+      - docker-mysql
+    ports:
+      - 8080:8080
+    environment:
+      DATABASE_HOST: docker-mysql
+      DATABASE_USER: hvarela
+      DATABASE_PASSWORD: beer
+      DATABASE_NAME: db  
+      DATABASE_PORT: 3306
+      SPRING_PROFILE: dev
+    networks:
+      - backend 
 # Names our volume
 volumes:
   my-db:
+
+# Networks to be created to facilitate communication between containers
+networks:
+  backend:
+  frontend:

@@ -16,6 +16,7 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("info.solidsoft.gradle.pitest:gradle-pitest-plugin:${gradlePitestPluginVersion}")
         classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${sonarQubeVersion}")
+        classpath('se.transmode.gradle:gradle-docker:1.2')
     }
 }
 
@@ -23,6 +24,7 @@ buildscript {
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'java'
+apply plugin: 'docker'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply from: 'gradle/version.gradle'
@@ -70,4 +72,15 @@ tasks.withType(JavaCompile){
 
 configurations {
     customProvidedRuntime
+}
+
+task buildDocker (type:Docker, dependsOn: build) {
+    applicationName = jar.baseName
+    dockerfile = file('Dockerfile')
+    doFirst {
+        copy {
+            from jar
+            into stageDir
+        }
+    }
 }
