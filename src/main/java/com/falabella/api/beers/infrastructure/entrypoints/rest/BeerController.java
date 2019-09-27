@@ -1,11 +1,13 @@
 package com.falabella.api.beers.infrastructure.entrypoints.rest;
 
+import com.falabella.api.beers.domain.entities.beers.BeerBox;
 import com.falabella.api.beers.domain.entities.beers.BeerItem;
 import com.falabella.api.beers.domain.usecases.BeerOperations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 
@@ -36,9 +38,24 @@ public class BeerController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     @ResponseBody
-    public BeerItem searchBeers(@PathVariable int id) {
+    public BeerItem searchBeers( @PathVariable int id) {
 
         return beerOperations.getBeerbyId( id);
+    }
+
+    @RequestMapping(
+            value = "/{id}/boxprice",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    @ResponseBody
+    public BeerBox searchBeers(
+            @PathVariable int id,
+            @RequestParam(name="quantity") int quantity,
+            @RequestParam(name="currency") String currency   ) {
+
+
+        return beerOperations.getBeerBoxPrice(id, quantity, currency );
     }
 
     @RequestMapping(

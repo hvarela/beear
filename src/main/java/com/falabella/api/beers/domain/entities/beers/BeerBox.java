@@ -1,23 +1,14 @@
 package com.falabella.api.beers.domain.entities.beers;
 
 public class BeerBox {
-    int cant;
-    float price;
 
-    public int getCant() {
-        return cant;
+    private float totalPrice;
+
+    public float getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setCant(int cant) {
-        this.cant = cant;
+    public void setTotalPrice(float totalPrice) {
+        this.totalPrice = totalPrice;
     }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
 }
