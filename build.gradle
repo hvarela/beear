@@ -31,7 +31,6 @@ apply from: 'gradle/version.gradle'
 apply from: 'gradle/sources.gradle'
 apply from: 'gradle/dependencies.gradle'
 apply from: 'gradle/tests.gradle'
-apply from: 'gradle/sonar.gradle'
 apply from: 'gradle/tasks.gradle'
 
 group = 'com.falabella.api'

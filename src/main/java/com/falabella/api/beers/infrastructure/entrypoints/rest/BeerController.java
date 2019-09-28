@@ -49,7 +49,7 @@ public class BeerController {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     @ResponseBody
-    public BeerBox searchBeers(
+    public BeerBox searchBoxBeerPrice(
             @PathVariable int id,
             @RequestParam(name="quantity") int quantity,
             @RequestParam(name="currency") String currency   ) {

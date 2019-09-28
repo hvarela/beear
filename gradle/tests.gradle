@@ -18,8 +18,12 @@ tasks.withType(Test){
 }
 
 pitest {
-    targetClasses = ['com.falabella.*']
+    targetClasses = ['com.falabella.api.beers.*']
     testSourceSets = [sourceSets.test]
+    excludedClasses = [
+            'com.falabella.api.beers.infrastructure.configuration.*',
+            'com.falabella.api.beers.infrastructure.entities.*',
+    ]
     threads = 4
     outputFormats = ['XML', 'HTML']
     coverageThreshold = 70

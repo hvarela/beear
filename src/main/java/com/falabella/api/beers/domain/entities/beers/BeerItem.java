@@ -73,7 +73,7 @@ public class BeerItem{
 
     public void validate(){
 
-        if( this.id == null  ||  StringUtils.isEmpty(this.name) || StringUtils.isEmpty(this.brewery) || StringUtils.isEmpty(this.country) ||
+        if( this.id == null  || this.price == null || StringUtils.isEmpty(this.name) || StringUtils.isEmpty(this.brewery) || StringUtils.isEmpty(this.country) ||
                 StringUtils.isEmpty(this.currency)  ){
             throw  new BeerItemException();
         }
