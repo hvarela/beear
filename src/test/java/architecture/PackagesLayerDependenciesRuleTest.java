@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RestController;
 
 @RunWith(ArchUnitRunner.class)
-@AnalyzeClasses(packages = "com.latam.api.bla.beers")
+@AnalyzeClasses(packages = "com.falabella.api.beers")
 public class PackagesLayerDependenciesRuleTest {
 
     @ArchTest

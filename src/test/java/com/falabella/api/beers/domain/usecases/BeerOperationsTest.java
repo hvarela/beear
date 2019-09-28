@@ -6,16 +6,12 @@ import com.falabella.api.beers.domain.entities.error.BeerNotFoundException;
 import com.falabella.api.beers.domain.entities.error.DuplicateBeerItemException;
 import com.falabella.api.beers.domain.usecases.ports.BeerDataProvider;
 import com.falabella.api.beers.domain.usecases.ports.CurrecyDataProvider;
-import com.falabella.api.beers.infrastructure.entities.BeersEntity;
-import com.falabella.api.beers.infrastructure.repository.translate.ModelConverter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.mockito.stubbing.OngoingStubbing;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -30,7 +26,6 @@ import static org.mockito.ArgumentMatchers.anyInt;
 
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
-@ActiveProfiles("test")
 public class BeerOperationsTest {
 
     @Mock
@@ -42,13 +37,11 @@ public class BeerOperationsTest {
     private BeerOperations beerOperations;
 
     private BeerItem beerItem;
-    private ModelConverter modelConverter;
     private List<BeerItem> beerItems;
 
     @Before
     public void  configTest(){
         beerItems = new ArrayList<BeerItem>();
-        modelConverter = new ModelConverter();
         beerOperations = new BeerOperations(beerDataProvider, currecyDataProvider);
         beerItem = new BeerItem(2,"escudo","ccu","CL","CLP", new Float(200.0) );
 
