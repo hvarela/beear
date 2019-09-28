@@ -73,9 +73,7 @@ public class BeerControllerTest {
     @Test( expected = BeerItemException.class)
     public void testaddInvalidBeerItemThrowException() {
         BeerItem beerItem = new BeerItem();
-
-        Mockito.when(beerOperations.addBeer(any())).thenReturn(beerItem);
-
+        
         BeerItem rtn = beerController.addBeers(beerItem);
 
     }
